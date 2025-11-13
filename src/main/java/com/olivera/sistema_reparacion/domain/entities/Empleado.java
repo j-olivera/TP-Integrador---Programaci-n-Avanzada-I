@@ -19,17 +19,17 @@ public class Empleado {
         this.email = email;
     }
 
-    public Empleado crearEmpleado(Long id, String nombre, String apellido, String especialidad, String email){
+    public static Empleado crearEmpleado( String nombre, String apellido, String especialidad, String email){
         validarDatos(nombre,apellido,especialidad,email);
         validarEmail(email);
-        return new Empleado(id, nombre, apellido, especialidad, email);
+        return new Empleado(null, nombre, apellido, especialidad, email);
     }
 
-    private void validarEmail(String email) {
+    private static void validarEmail(String email) {
         if(!email.contains("@") || !email.contains(".")) throw new EmailNoValidoException("El email es invalido");
     }
 
-    private void validarDatos(String nombre, String apellido, String especialidad, String email) {
+    private static void validarDatos(String nombre, String apellido, String especialidad, String email) {
         if(nombre == null || apellido == null || especialidad == null || email == null)
             throw new DatosNoValidosException("Datos no validos");
     }

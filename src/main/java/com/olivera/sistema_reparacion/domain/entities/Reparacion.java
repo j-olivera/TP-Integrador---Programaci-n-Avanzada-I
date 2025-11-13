@@ -26,11 +26,11 @@ public class Reparacion {
         this.costo = costo;
     }
 
-    public Reparacion crearReparacion(Long id, String descripcionProblema, String diagnostico, Estado estado, LocalDate fechaIngreso, LocalDate fechaEntrega, Double costo) {
-        validarDatos(id, descripcionProblema,diagnostico,estado,fechaIngreso,fechaEntrega,costo);
+    public Reparacion crearReparacion(String descripcionProblema, String diagnostico, Estado estado, LocalDate fechaIngreso, LocalDate fechaEntrega, Double costo) {
+        validarDatos(descripcionProblema,diagnostico,estado,fechaIngreso,fechaEntrega,costo);
         validarFechaIngreso(fechaIngreso);
         validarDescripcion_Diagnostico(descripcionProblema,diagnostico);
-        return new Reparacion(id,descripcionProblema,diagnostico, estado, fechaIngreso, fechaEntrega, costo);
+        return new Reparacion(null,descripcionProblema,diagnostico, estado, fechaIngreso, fechaEntrega, costo);
     }
 
     private void validarDescripcion_Diagnostico(String descripcionProblema, String diagnostico) {
@@ -40,8 +40,8 @@ public class Reparacion {
         }
     }
 
-    private void validarDatos(Long id, String descripcionProblema, String diagnostico, Estado estado, LocalDate fechaIngreso, LocalDate fechaEntrega, Double costo) {
-        if(id==null || descripcionProblema ==null || diagnostico==null || estado==null || fechaIngreso==null || costo==null){}
+    private void validarDatos(String descripcionProblema, String diagnostico, Estado estado, LocalDate fechaIngreso, LocalDate fechaEntrega, Double costo) {
+        if( descripcionProblema ==null || diagnostico==null || estado==null || fechaIngreso==null || costo==null){}
             throw new DatosNoValidosException("Datos no validos");
     }
 

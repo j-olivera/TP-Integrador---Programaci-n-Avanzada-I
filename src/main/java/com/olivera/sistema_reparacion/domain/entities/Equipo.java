@@ -9,11 +9,11 @@ public class Equipo {
     private Long id;
     private tipoEquipo tipo;
     private ModeloEquipo modelo;
-    private Integer numeroSerie;
+    private String numeroSerie;
     private String nombreCliente;
-    private Integer numeroCliente;
+    private String numeroCliente;
 
-    public Equipo(Long id, tipoEquipo tipo, ModeloEquipo modelo, Integer numeroSerie, String nombreCliente, Integer numeroCliente) {
+    public Equipo(Long id, tipoEquipo tipo, ModeloEquipo modelo, String numeroSerie, String nombreCliente, String numeroCliente) {
         this.id = id;
         this.tipo = tipo;
         this.modelo = modelo;
@@ -22,18 +22,13 @@ public class Equipo {
         this.numeroCliente = numeroCliente;
     }
 
-    public Equipo crearEquipo(Long id, tipoEquipo tipo, ModeloEquipo modelo, Integer numeroSerie, String nombreCliente, Integer numeroCliente){
-        validarDatos(id,tipo,modelo,numeroSerie,nombreCliente,numeroCliente);
-        validarEnteros(numeroSerie,numeroCliente);
-        return new Equipo(id, tipo, modelo, numeroSerie, nombreCliente, numeroCliente);
+    public static Equipo crearEquipo( tipoEquipo tipo, ModeloEquipo modelo, String numeroSerie, String nombreCliente, String numeroCliente){
+        validarDatos(tipo,modelo,numeroSerie,nombreCliente,numeroCliente);
+        return new Equipo(null,tipo, modelo, numeroSerie, nombreCliente, numeroCliente);
     }
 
-    private void validarEnteros(Integer numeroSerie, Integer numeroCliente) {
-        if (numeroSerie <= 0 || numeroCliente <= 0 ) throw new NumerosNoValidosExceptions("El numero no es valido");
-    }
-
-    private void validarDatos(Long id, tipoEquipo tipo, ModeloEquipo modelo, Integer numeroSerie, String nombreCliente, Integer numeroCliente) {
-        if(id==null || tipo==null || modelo==null || numeroSerie==null || nombreCliente==null || numeroCliente==null || nombreCliente.isBlank()){
+    private static void validarDatos( tipoEquipo tipo, ModeloEquipo modelo, String numeroSerie, String nombreCliente, String numeroCliente) {
+        if(tipo==null || modelo==null || numeroSerie==null || nombreCliente==null || numeroCliente==null || nombreCliente.isBlank()){
             throw new DatosNoValidosException("Datos no validos.");
         }
     }
@@ -50,7 +45,7 @@ public class Equipo {
         return modelo;
     }
 
-    public Integer getNumeroSerie() {
+    public String getNumeroSerie() {
         return numeroSerie;
     }
 
@@ -58,7 +53,7 @@ public class Equipo {
         return nombreCliente;
     }
 
-    public Integer getNumeroCliente() {
+    public String getNumeroCliente() {
         return numeroCliente;
     }
 }
