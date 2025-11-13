@@ -25,6 +25,7 @@ public class Empleado {
         return new Empleado(null, nombre, apellido, especialidad, email);
     }
 
+
     private static void validarEmail(String email) {
         if(!email.contains("@") || !email.contains(".")) throw new EmailNoValidoException("El email es invalido");
     }
@@ -32,6 +33,10 @@ public class Empleado {
     private static void validarDatos(String nombre, String apellido, String especialidad, String email) {
         if(nombre == null || apellido == null || especialidad == null || email == null)
             throw new DatosNoValidosException("Datos no validos");
+    }
+
+    public static Empleado reconstruir(Long id, String nombre, String apellido, String especialidad, String email) {
+        return new Empleado(id, nombre, apellido, especialidad, email);
     }
 
     public Long getId() {
