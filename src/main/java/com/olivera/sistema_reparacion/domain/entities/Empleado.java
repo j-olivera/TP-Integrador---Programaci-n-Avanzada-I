@@ -20,7 +20,7 @@ public class Empleado {
     }
 
     public Empleado crearEmpleado(Long id, String nombre, String apellido, String especialidad, String email){
-        validarDatos(id,nombre,apellido,especialidad,email);
+        validarDatos(nombre,apellido,especialidad,email);
         validarEmail(email);
         return new Empleado(id, nombre, apellido, especialidad, email);
     }
@@ -29,8 +29,8 @@ public class Empleado {
         if(!email.contains("@") || !email.contains(".")) throw new EmailNoValidoException("El email es invalido");
     }
 
-    private void validarDatos(Long id, String nombre, String apellido, String especialidad, String email) {
-        if(id == null || nombre == null || apellido == null || especialidad == null || email == null)
+    private void validarDatos(String nombre, String apellido, String especialidad, String email) {
+        if(nombre == null || apellido == null || especialidad == null || email == null)
             throw new DatosNoValidosException("Datos no validos");
     }
 
