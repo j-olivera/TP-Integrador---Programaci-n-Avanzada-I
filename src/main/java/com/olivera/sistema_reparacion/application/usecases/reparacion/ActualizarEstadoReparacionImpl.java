@@ -1,5 +1,6 @@
 package com.olivera.sistema_reparacion.application.usecases.reparacion;
 
+import com.olivera.sistema_reparacion.application.dto.reparacion.ActualizarEstadoReparacionCommand;
 import com.olivera.sistema_reparacion.application.dto.reparacion.ReparacionResponse;
 import com.olivera.sistema_reparacion.application.ports.in.reparacion.ActualizarEstadoReparacion;
 import com.olivera.sistema_reparacion.application.ports.out.ReparacionRepositoryPort;
@@ -18,9 +19,10 @@ public class ActualizarEstadoReparacionImpl implements ActualizarEstadoReparacio
 
 
     @Override
-    public ReparacionResponse actualizarEstado(Long id, Estado estado) {
+    public ReparacionResponse actualizarEstado(Long id, ActualizarEstadoReparacionCommand estado) {
+        estado.validar();
         Reparacion nueva = reparacionRepositoryPort.findById(id).orElseThrow(()-> new RuntimeException("Reparacion no encontrada"));
-        nueva.setEstado(estado);
+        nueva.setEstado(estado.getEstado());
         return reparacionMapper.toResponse(nueva);
     }
 }

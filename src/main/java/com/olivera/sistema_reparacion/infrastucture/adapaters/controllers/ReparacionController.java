@@ -1,5 +1,6 @@
 package com.olivera.sistema_reparacion.infrastucture.adapaters.controllers;
 
+import com.olivera.sistema_reparacion.application.dto.reparacion.ActualizarEstadoReparacionCommand;
 import com.olivera.sistema_reparacion.application.dto.reparacion.RegistrarReparacionCommand;
 import com.olivera.sistema_reparacion.application.dto.reparacion.ReparacionResponse;
 import com.olivera.sistema_reparacion.application.ports.in.reparacion.*;
@@ -71,8 +72,8 @@ public class ReparacionController {
     }
     //put
     @PutMapping("/{id}/estado")
-    public ResponseEntity<ReparacionResponse> updateEstado(@PathVariable Long id, @RequestBody Estado estado) {
-        ReparacionResponse actEstado = actualizarEstadoReparacion.actualizarEstado(id, estado);
+    public ResponseEntity<ReparacionResponse> updateEstado(@PathVariable Long id, @RequestBody ActualizarEstadoReparacionCommand command) {
+        ReparacionResponse actEstado = actualizarEstadoReparacion.actualizarEstado(id, command);
         return ResponseEntity.ok(actEstado);
     }
 }
