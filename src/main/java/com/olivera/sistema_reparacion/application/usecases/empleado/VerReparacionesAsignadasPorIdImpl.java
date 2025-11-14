@@ -6,6 +6,7 @@ import com.olivera.sistema_reparacion.application.ports.out.EmpleadoRepositoryPo
 import com.olivera.sistema_reparacion.application.ports.out.ReparacionRepositoryPort;
 import com.olivera.sistema_reparacion.domain.entities.Reparacion;
 import com.olivera.sistema_reparacion.domain.exceptions.empleado.EmpleadoNoEncontradoException;
+import com.olivera.sistema_reparacion.domain.exceptions.reparacion.ReparacionNoEncontradaException;
 import com.olivera.sistema_reparacion.infrastucture.adapaters.mappers.reparacion.ReparacionMapper;
 
 import java.util.List;
@@ -26,6 +27,9 @@ public class VerReparacionesAsignadasPorIdImpl implements VerReparacionesAsignad
             throw new EmpleadoNoEncontradoException("El empleado no existe");
         }
         List<Reparacion> reparaciones = reparacionRepositoryPort.findByEmpleadoId(id);
+        if (reparaciones.isEmpty()){
+            throw new ReparacionNoEncontradaException("No hay reparaciones");
+        }
         return reparacionMapper.toResponseList(reparaciones);
     }
 }

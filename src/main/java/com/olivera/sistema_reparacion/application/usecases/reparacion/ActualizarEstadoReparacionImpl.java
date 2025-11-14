@@ -6,6 +6,7 @@ import com.olivera.sistema_reparacion.application.ports.in.reparacion.Actualizar
 import com.olivera.sistema_reparacion.application.ports.out.ReparacionRepositoryPort;
 import com.olivera.sistema_reparacion.domain.entities.Reparacion;
 import com.olivera.sistema_reparacion.domain.enums.Estado;
+import com.olivera.sistema_reparacion.domain.exceptions.reparacion.ReparacionNoEncontradaException;
 import com.olivera.sistema_reparacion.infrastucture.adapaters.mappers.reparacion.ReparacionMapper;
 
 public class ActualizarEstadoReparacionImpl implements ActualizarEstadoReparacion {
@@ -21,7 +22,7 @@ public class ActualizarEstadoReparacionImpl implements ActualizarEstadoReparacio
     @Override
     public ReparacionResponse actualizarEstado(Long id, ActualizarEstadoReparacionCommand estado) {
         estado.validar();
-        Reparacion nueva = reparacionRepositoryPort.findById(id).orElseThrow(()-> new RuntimeException("Reparacion no encontrada"));
+        Reparacion nueva = reparacionRepositoryPort.findById(id).orElseThrow(()-> new ReparacionNoEncontradaException("Reparacion no encontrada"));
         nueva.setEstado(estado.getEstado());
         return reparacionMapper.toResponse(nueva);
     }

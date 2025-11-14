@@ -5,6 +5,7 @@ import com.olivera.sistema_reparacion.application.ports.in.reparacion.BuscarRepa
 import com.olivera.sistema_reparacion.application.ports.out.ReparacionRepositoryPort;
 import com.olivera.sistema_reparacion.domain.entities.Reparacion;
 import com.olivera.sistema_reparacion.domain.enums.Estado;
+import com.olivera.sistema_reparacion.domain.exceptions.reparacion.ReparacionNoEncontradaException;
 import com.olivera.sistema_reparacion.infrastucture.adapaters.mappers.reparacion.ReparacionMapper;
 
 import java.util.List;
@@ -23,6 +24,9 @@ public class BuscarReparacionPorEstadoImpl implements BuscarReparacionPorEstado 
     @Override
     public List<ReparacionResponse> buscarReparacionPorEstado(Estado estado) {
         List<Reparacion> encontrados = reparacionRepositoryPort.findByEstado(estado);
+        if(encontrados.isEmpty()){
+            throw new ReparacionNoEncontradaException("No hay reparaciones por ese estado");
+        }
         return encontrados.stream()
                 .map(reparacionMapper::toResponse)
                 .collect(Collectors.toList());

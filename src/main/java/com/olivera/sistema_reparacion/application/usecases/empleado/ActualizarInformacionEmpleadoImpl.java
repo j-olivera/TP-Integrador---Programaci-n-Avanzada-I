@@ -22,7 +22,7 @@ public class ActualizarInformacionEmpleadoImpl implements ActualizarInformacionE
         empleado.validar();
         Empleado empleado1 = empleadoRepository.findById(empleado.getId())
                 .orElseThrow(() -> new EmpleadoNoEncontradoException("Empleado de id "+empleado.getId()+" no encontrado"));
-        Empleado reconstruido= Empleado.reconstruir(empleado.getId(),empleado.getNombre(),empleado.getApellido(),empleado.getEspecialidad(),empleado.getEmail());
+        Empleado reconstruido= Empleado.reconstruir(empleado1.getId(),empleado1.getNombre(),empleado1.getApellido(),empleado1.getEspecialidad(),empleado1.getEmail());
         Empleado actualizado= empleadoRepository.save(reconstruido);
         return empleadoMapper.toResponse(actualizado);
     }

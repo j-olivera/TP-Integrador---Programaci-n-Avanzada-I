@@ -16,7 +16,7 @@ public class EquipoJpaMapper {
                 equipo.getNumeroCliente());
     }
     public Equipo toDomain(EquipoEntity equipoEntity) {
-        return new Equipo(
+        return Equipo.reconstituir(
                 equipoEntity.getId(),
                 equipoEntity.getTipo(),
                 equipoEntity.getModelo(),

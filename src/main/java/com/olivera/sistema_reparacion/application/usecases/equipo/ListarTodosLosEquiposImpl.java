@@ -4,6 +4,7 @@ import com.olivera.sistema_reparacion.application.dto.equipo.EquipoResponse;
 import com.olivera.sistema_reparacion.application.ports.in.equipo.ListarTodosLosEquipos;
 import com.olivera.sistema_reparacion.application.ports.out.EquipoRepositoryPort;
 import com.olivera.sistema_reparacion.domain.entities.Equipo;
+import com.olivera.sistema_reparacion.domain.exceptions.equipo.EquipoNoEncontradoException;
 import com.olivera.sistema_reparacion.infrastucture.adapaters.mappers.equipo.EquipoMapper;
 
 import java.util.List;
@@ -23,10 +24,8 @@ public class ListarTodosLosEquiposImpl implements ListarTodosLosEquipos {
     public List<EquipoResponse> listarEquipos() {
         List<Equipo> equipos = equipoRepositoryPort.findAll();
         if (equipos.isEmpty()) {
-            throw new RuntimeException("No hay equipos");
+            throw new EquipoNoEncontradoException("No hay equipos");
         }
-        return equipos.stream()
-                .map(equipoMapper::toResponse)
-                .collect(Collectors.toList());
+        return equipoMapper.toResponseList(equipos);
     }
 }

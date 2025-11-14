@@ -4,6 +4,7 @@ import com.olivera.sistema_reparacion.application.dto.reparacion.ReparacionRespo
 import com.olivera.sistema_reparacion.application.ports.in.reparacion.BuscarReparacionPorId;
 import com.olivera.sistema_reparacion.application.ports.out.ReparacionRepositoryPort;
 import com.olivera.sistema_reparacion.domain.entities.Reparacion;
+import com.olivera.sistema_reparacion.domain.exceptions.reparacion.ReparacionNoEncontradaException;
 import com.olivera.sistema_reparacion.infrastucture.adapaters.mappers.reparacion.ReparacionMapper;
 
 public class BuscarReparacionPorIdImpl implements BuscarReparacionPorId {
@@ -18,7 +19,7 @@ public class BuscarReparacionPorIdImpl implements BuscarReparacionPorId {
 
     @Override
     public ReparacionResponse buscarReparacionPorId(Long id) {
-        Reparacion encontrada = reparacionRepositoryPort.findById(id).orElseThrow(() -> new RuntimeException("Reparacion no encontrada"));
+        Reparacion encontrada = reparacionRepositoryPort.findById(id).orElseThrow(() -> new ReparacionNoEncontradaException("Reparacion no encontrada"));
         return reparacionMapper.toResponse(encontrada);
     }
 }

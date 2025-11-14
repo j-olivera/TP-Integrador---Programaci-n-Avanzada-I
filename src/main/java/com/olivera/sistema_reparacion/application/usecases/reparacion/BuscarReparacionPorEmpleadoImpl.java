@@ -4,6 +4,7 @@ import com.olivera.sistema_reparacion.application.dto.reparacion.ReparacionRespo
 import com.olivera.sistema_reparacion.application.ports.in.reparacion.BuscarReparacionPorEmpleado;
 import com.olivera.sistema_reparacion.application.ports.out.ReparacionRepositoryPort;
 import com.olivera.sistema_reparacion.domain.entities.Reparacion;
+import com.olivera.sistema_reparacion.domain.exceptions.reparacion.ReparacionNoEncontradaException;
 import com.olivera.sistema_reparacion.infrastucture.adapaters.mappers.reparacion.ReparacionMapper;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public class BuscarReparacionPorEmpleadoImpl implements BuscarReparacionPorEmple
     public List<ReparacionResponse> findByEmpleado(Long id) {
         List<Reparacion> reparaciones = reparacionRepositoryPort.findByEmpleadoId(id);
         if(!reparaciones.isEmpty()){
-            throw new RuntimeException("No hay reparaciones");
+            throw new ReparacionNoEncontradaException("No hay reparaciones");
         }
         return reparaciones.stream()
                 .map(reparacionMapper::toResponse)
