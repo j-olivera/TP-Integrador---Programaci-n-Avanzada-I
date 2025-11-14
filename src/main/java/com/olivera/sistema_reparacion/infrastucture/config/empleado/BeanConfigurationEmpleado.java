@@ -1,6 +1,7 @@
 package com.olivera.sistema_reparacion.infrastucture.config.empleado;
 
 import com.olivera.sistema_reparacion.application.ports.in.empleado.*;
+import com.olivera.sistema_reparacion.application.ports.in.reparacion.RegistrarReparacion;
 import com.olivera.sistema_reparacion.application.ports.out.EmpleadoRepositoryPort;
 import com.olivera.sistema_reparacion.application.ports.out.ReparacionRepositoryPort;
 import com.olivera.sistema_reparacion.application.usecases.empleado.*;
@@ -54,4 +55,7 @@ public class BeanConfigurationEmpleado {
     public VerReparacionesAsignadasPorIdImpl verReparacionesAsignadasPorId(EmpleadoRepositoryPort empleadoRepositoryPort, ReparacionRepositoryPort reparacionRepositoryPort, ReparacionMapper reparacionMapper) {
         return new VerReparacionesAsignadasPorIdImpl(empleadoRepositoryPort, reparacionRepositoryPort, reparacionMapper);
     }
+
+    //REPARACION USE CASE
+
 }

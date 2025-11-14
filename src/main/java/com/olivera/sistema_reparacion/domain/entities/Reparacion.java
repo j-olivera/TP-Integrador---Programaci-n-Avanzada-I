@@ -96,4 +96,8 @@ public class Reparacion {
     public Double getCosto() {
         return costo;
     }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
 }

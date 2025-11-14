@@ -5,5 +5,5 @@ import com.olivera.sistema_reparacion.application.dto.reparacion.ReparacionRespo
 import java.util.List;
 
 public interface BuscarReparacionPorEmpleado {
-    List<ReparacionResponse> findByEspecialidad(Long id);
+    List<ReparacionResponse> findByEmpleado(Long id);
 }
