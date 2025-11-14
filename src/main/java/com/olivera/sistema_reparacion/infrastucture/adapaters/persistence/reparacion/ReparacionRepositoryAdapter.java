@@ -87,5 +87,10 @@ public class ReparacionRepositoryAdapter implements ReparacionRepositoryPort {
                 .map(reparacionJpaMapper::toDomain)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public void eliminarReparacionPorId(Long id) {
+        reparacionJpaRepository.deleteById(id);
+    }
 }
 //.map(mapper::toDomain) PARA TODO

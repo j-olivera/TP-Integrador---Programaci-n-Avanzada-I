@@ -15,4 +15,5 @@ public interface ReparacionRepositoryPort {
     List<Reparacion> findByEstado(Estado estado);
     List<Reparacion> findByEmpleadoId(Long empleadoId);
     List<Reparacion> findByEquipoId(Long equipoId);
+    void eliminarReparacionPorId(Long id);
 }

@@ -21,6 +21,9 @@ public class BuscarReparacionPorEmpleadoImpl implements BuscarReparacionPorEmple
     @Override
     public List<ReparacionResponse> findByEmpleado(Long id) {
         List<Reparacion> reparaciones = reparacionRepositoryPort.findByEmpleadoId(id);
+        if(!reparaciones.isEmpty()){
+            throw new RuntimeException("No hay reparaciones");
+        }
         return reparaciones.stream()
                 .map(reparacionMapper::toResponse)
                 .collect(Collectors.toList());

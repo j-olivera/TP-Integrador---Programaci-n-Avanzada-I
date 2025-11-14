@@ -53,4 +53,4 @@ public class EmpleadoController {
         return ResponseEntity.ok(response);
     }
 }
-//porfavor dios q ande xd
+//por favor Dios q ande xd
