@@ -19,7 +19,6 @@ public class RegistrarReparacionImpl implements RegistrarReparacion {
     @Override
     public ReparacionResponse registrarReparacion(RegistrarReparacionCommand reparacion) {
         reparacion.validar();
-        //regla de negocio
         Reparacion reparacion1 = reparacionMapper.toDomain(reparacion);
         Reparacion reparacion2 = reparacionRepositoryPort.save(reparacion1);
         return reparacionMapper.toResponse(reparacion2);

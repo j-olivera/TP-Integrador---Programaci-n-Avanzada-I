@@ -19,7 +19,6 @@ public class RegistrarEmpleadoImpl implements RegistrarEmpleado {
     @Override
     public EmpleadoResponse saveEmpleado(RegistrarEmpleadoCommand empleado) {
         empleado.validar();
-        //aca debería ir una regla de negocio
         Empleado empleado1 = empleadoMapper.toDomain(empleado);
         Empleado empleado2 = empleadoRepository.save(empleado1);
         return empleadoMapper.toResponse(empleado2);
