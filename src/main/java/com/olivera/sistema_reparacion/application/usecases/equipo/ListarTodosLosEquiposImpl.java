@@ -20,7 +20,7 @@ public class ListarTodosLosEquiposImpl implements ListarTodosLosEquipos {
     }
 
     @Override
-    public List<EquipoResponse> listarEquipoPorId(Long id) {
+    public List<EquipoResponse> listarEquipos() {
         List<Equipo> equipos = equipoRepositoryPort.findAll();
         if (equipos.isEmpty()) {
             throw new RuntimeException("No hay equipos");

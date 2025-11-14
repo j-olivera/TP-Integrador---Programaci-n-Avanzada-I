@@ -92,5 +92,13 @@ public class ReparacionRepositoryAdapter implements ReparacionRepositoryPort {
     public void eliminarReparacionPorId(Long id) {
         reparacionJpaRepository.deleteById(id);
     }
+
+    @Override
+    public Reparacion actualizarEstado(Long id, Estado estado) {
+        ReparacionEntity nv = reparacionJpaRepository.findById(id).
+                orElseThrow(()-> new RuntimeException("Reparacion no econtrada"));
+        nv.setEstado(estado);
+        return reparacionJpaMapper.toDomain(nv);
+    }
 }
 //.map(mapper::toDomain) PARA TODO

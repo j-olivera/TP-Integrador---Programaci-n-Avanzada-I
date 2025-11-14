@@ -95,6 +95,10 @@ import java.time.LocalDate;
         public void setEquipo(EquipoEntity equipo) {
             this.equipo = equipo;
         }
+
+        public void setEstado(Estado estado) {
+            this.estado = estado;
+        }
     }
 
 

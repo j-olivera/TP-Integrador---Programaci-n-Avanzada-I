@@ -89,10 +89,12 @@ public class BeanConfigurationEmpleado {
         return new ActualizarEstadoReparacionImpl(reparacionMapper, reparacionRepositoryPort);
     }
     //buscar reparacion por estado
+    @Bean
     public BuscarReparacionPorEstado buscarReparacionPorEstado(ReparacionRepositoryPort reparacionRepositoryPort, ReparacionMapper reparacionMapper) {
         return new BuscarReparacionPorEstadoImpl(reparacionRepositoryPort, reparacionMapper);
     }
     //eliminar
+    @Bean
     public EliminarReparacionPorId eliminarReparacionPorId(ReparacionRepositoryPort reparacionRepositoryPort) {
         return new EliminarReparacionPorIdImpl(reparacionRepositoryPort);
     }
