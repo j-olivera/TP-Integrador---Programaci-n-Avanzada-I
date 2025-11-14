@@ -1,12 +1,11 @@
 package com.olivera.sistema_reparacion.application.ports.out;
 
 import com.olivera.sistema_reparacion.domain.entities.Equipo;
-import com.olivera.sistema_reparacion.domain.enums.ModeloEquipo;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface EquipoRepository {
+public interface EquipoRepositoryPort {
     //
     Equipo save(Equipo equipo);
     Optional<Equipo> findById(Long id);
