@@ -37,10 +37,10 @@ public class RegistrarReparacionCommand {
             throw new DatosNoValidosException("Costo invalido");
         }
         //formato
-        if(diagnostico.length()<40){
+        if(diagnostico.length()<20){
             throw new DatosNoValidosException("El diagnostico debe tener 40 al menos characteres");
         }
-        if(descripcionProblema.length()<40){
+        if(descripcionProblema.length()<20){
             throw new DatosNoValidosException("La descripcion debe tener al menos 40 caracteres");
         }
 

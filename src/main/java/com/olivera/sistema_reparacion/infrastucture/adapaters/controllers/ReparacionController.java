@@ -26,7 +26,7 @@ public class ReparacionController {
     }
 
     @PostMapping
-    public ResponseEntity<ReparacionResponse> registrarReparacion(@RequestBody Reparacion reparacion, Long empleadoId, Long equipoId) {
+    public ResponseEntity<ReparacionResponse> registrarReparacion(@RequestBody Reparacion reparacion) {
         RegistrarReparacionCommand command = new RegistrarReparacionCommand(
                 reparacion.getDescripcionProblema(),
                 reparacion.getDiagnostico(),
@@ -34,8 +34,8 @@ public class ReparacionController {
                 reparacion.getFechaIngreso(),
                 reparacion.getFechaEntrega(),
                 reparacion.getCosto(),
-                empleadoId,
-                equipoId);
+                reparacion.getEmpleadoId(),
+                reparacion.getEquipoId());
         ReparacionResponse response = registrarReparacion.registrarReparacion(command);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }

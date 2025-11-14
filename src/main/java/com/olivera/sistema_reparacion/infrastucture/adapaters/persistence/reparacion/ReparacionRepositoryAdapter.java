@@ -3,6 +3,8 @@ package com.olivera.sistema_reparacion.infrastucture.adapaters.persistence.repar
 import com.olivera.sistema_reparacion.application.ports.out.ReparacionRepositoryPort;
 import com.olivera.sistema_reparacion.domain.entities.Reparacion;
 import com.olivera.sistema_reparacion.domain.enums.Estado;
+import com.olivera.sistema_reparacion.domain.exceptions.empleado.EmpleadoNoEncontradoException;
+import com.olivera.sistema_reparacion.domain.exceptions.equipo.EquipoNoEncontradoException;
 import com.olivera.sistema_reparacion.infrastucture.adapaters.persistence.empleado.EmpleadoEntity;
 import com.olivera.sistema_reparacion.infrastucture.adapaters.persistence.empleado.EmpleadoJpaRepository;
 import com.olivera.sistema_reparacion.infrastucture.adapaters.persistence.equipo.EquipoEntity;
@@ -32,9 +34,9 @@ public class ReparacionRepositoryAdapter implements ReparacionRepositoryPort {
     public Reparacion save(Reparacion reparacion) {
         //ver si tiene empleado y equipo asignado ?¡?¡?¡?
         EmpleadoEntity empleado = empleadoJpaRepository.findById(reparacion.getEmpleadoId())
-                .orElseThrow(() -> new RuntimeException("Empleado no encontrado"));
+                .orElseThrow(() -> new EmpleadoNoEncontradoException("Empleado no encontrado"));
         EquipoEntity equipo = equipoJpaRepository.findById(reparacion.getEquipoId())
-                .orElseThrow(()-> new RuntimeException("Equipo no encontrado"));
+                .orElseThrow(()-> new EquipoNoEncontradoException("Equipo no encontrado"));
 
 
         ReparacionEntity entity = reparacionJpaMapper.toEntity(reparacion, empleado, equipo);

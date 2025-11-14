@@ -47,14 +47,15 @@ public class Reparacion {
 
     private static void validarDescripcion_Diagnostico(String descripcionProblema, String diagnostico) {
         //la descripcion no puede ser corta, tampoco muy larga, al igual que el diagnostico
-        if(descripcionProblema.isBlank() || descripcionProblema.length()>200 || descripcionProblema.length()<40 || diagnostico.length()<40|| diagnostico.isBlank() || diagnostico.length()>200){
+        if(descripcionProblema.isBlank() || descripcionProblema.length()>200 || descripcionProblema.length()<20 || diagnostico.length()<20|| diagnostico.isBlank() || diagnostico.length()>200){
                 throw new LongitudNoValidaException("Debe precisar información exacta");
         }
     }
 
     private static void validarDatos(String descripcionProblema, String diagnostico, Estado estado, LocalDate fechaIngreso, LocalDate fechaEntrega, Double costo) {
-        if( descripcionProblema ==null || diagnostico==null || estado==null || fechaIngreso==null || costo==null){}
+        if( descripcionProblema ==null || diagnostico==null || estado==null || fechaIngreso==null || costo==null) {
             throw new DatosNoValidosException("Datos no validos");
+        }
     }
 
     private static void validarFechaIngreso(LocalDate fechaIngreso) {
