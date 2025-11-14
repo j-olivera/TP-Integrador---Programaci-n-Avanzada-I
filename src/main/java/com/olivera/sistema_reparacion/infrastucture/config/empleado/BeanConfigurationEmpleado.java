@@ -1,10 +1,15 @@
 package com.olivera.sistema_reparacion.infrastucture.config.empleado;
 
 import com.olivera.sistema_reparacion.application.ports.in.empleado.*;
+import com.olivera.sistema_reparacion.application.ports.in.reparacion.BuscarReparacionPorId;
+import com.olivera.sistema_reparacion.application.ports.in.reparacion.ListarTodasReparaciones;
 import com.olivera.sistema_reparacion.application.ports.in.reparacion.RegistrarReparacion;
 import com.olivera.sistema_reparacion.application.ports.out.EmpleadoRepositoryPort;
 import com.olivera.sistema_reparacion.application.ports.out.ReparacionRepositoryPort;
 import com.olivera.sistema_reparacion.application.usecases.empleado.*;
+import com.olivera.sistema_reparacion.application.usecases.reparacion.BuscarReparacionPorIdImpl;
+import com.olivera.sistema_reparacion.application.usecases.reparacion.ListarTodasReparacionImpl;
+import com.olivera.sistema_reparacion.application.usecases.reparacion.RegistrarReparacionImpl;
 import com.olivera.sistema_reparacion.infrastucture.adapaters.mappers.empleado.EmpleadoMapper;
 import com.olivera.sistema_reparacion.infrastucture.adapaters.mappers.reparacion.ReparacionMapper;
 import org.springframework.context.annotation.Bean;
@@ -57,5 +62,16 @@ public class BeanConfigurationEmpleado {
     }
 
     //REPARACION USE CASE
-
+    @Bean
+    public RegistrarReparacion registrarReparacionPorId(ReparacionRepositoryPort reparacionRepositoryPort, ReparacionMapper reparacionMapper) {
+        return new RegistrarReparacionImpl(reparacionRepositoryPort, reparacionMapper);
+    }
+    @Bean
+    public BuscarReparacionPorId buscarReparacionPorId(ReparacionRepositoryPort reparacionRepositoryPort, ReparacionMapper reparacionMapper) {
+        return new BuscarReparacionPorIdImpl(reparacionRepositoryPort, reparacionMapper);
+    }
+    @Bean
+    ListarTodasReparaciones listarTodasReparaciones(ReparacionRepositoryPort reparacionRepositoryPort,  ReparacionMapper reparacionMapper) {
+        return new ListarTodasReparacionImpl(reparacionRepositoryPort, reparacionMapper);
+    }
 }
