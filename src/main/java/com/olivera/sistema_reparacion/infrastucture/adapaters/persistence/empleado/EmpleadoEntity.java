@@ -26,6 +26,8 @@ public class EmpleadoEntity {
     private String email;
 
     @OneToMany(mappedBy = "empleado", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    //cascade typy all indica q todos las operaciones en la entidad padre deben repartirse en las entidades hijas, o sea reparaciones
+    //orphanRemoval indica q si borramos de una coleccion a una entidad hija esta se elimina da la bd
     private List<ReparacionEntity> reparaciones = new ArrayList<>();
 
     public EmpleadoEntity() {

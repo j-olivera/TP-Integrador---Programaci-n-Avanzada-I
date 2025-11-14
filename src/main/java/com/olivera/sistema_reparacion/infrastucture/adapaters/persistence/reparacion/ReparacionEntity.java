@@ -10,20 +10,16 @@ import java.time.LocalDate;
     @Entity
     @Table(name = "reparaciones")
     public class ReparacionEntity {
-
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
-
         @Column(nullable = false)
         private String descripcionProblema;
         @Column(nullable = false)
         private String diagnostico;
-
-        @Enumerated(EnumType.STRING)
+        @Enumerated(EnumType.STRING) //esto no entendia asi que aqui entro la ia
         @Column(nullable = false)
         private Estado estado;
-
         @Column(nullable = false)
         private LocalDate fechaIngreso;
         @Column()
@@ -34,7 +30,7 @@ import java.time.LocalDate;
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "empleado_id", nullable = false)
         private EmpleadoEntity empleado;
-
+        //fechtype.lazy para optimización en la carga de bd
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "equipo_id", nullable = false)
         private EquipoEntity equipo;
