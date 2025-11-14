@@ -7,68 +7,24 @@ import java.time.LocalDate;
 
 public class ActualizarEstadoReparacionCommand {
     private Long id;
-    private String descripcionProblema;
-    private String diagnostico;
     private Estado estado;
-    private LocalDate fechaIngreso;
-    private LocalDate fechaEntrega;
-    private Double costo;
 
-    public ActualizarEstadoReparacionCommand(Long id, String descripcionProblema, String diagnostico, Estado estado, LocalDate fechaIngreso, LocalDate fechaEntrega, Double costo) {
+    public ActualizarEstadoReparacionCommand(Long id, Estado estado) {
         this.id = id;
-        this.descripcionProblema = descripcionProblema;
-        this.diagnostico = diagnostico;
         this.estado = estado;
-        this.fechaIngreso = fechaIngreso;
-        this.fechaEntrega = fechaEntrega;
-        this.costo = costo;
     }
 
-    public void validar(){
-        if(descripcionProblema==null || descripcionProblema.trim().isBlank()){
-            throw new DatosNoValidosException("Descripción obligatoria");
+    public void validar() {
+        if(estado==null){
+            throw new RuntimeException("El estado no puede ser nulo");
         }
-        if(diagnostico==null || diagnostico.trim().isBlank()){
-            throw new DatosNoValidosException("Diagnostico obligatorio");
-        }
-        if(costo==null || costo<=0.0){
-            throw new DatosNoValidosException("Costo invalido");
-        }
-        //formato
-        if(diagnostico.length()<20){
-            throw new DatosNoValidosException("El diagnostico debe tener 20 al menos characteres");
-        }
-        if(descripcionProblema.length()<20){
-            throw new DatosNoValidosException("La descripcion debe tener al menos 20 caracteres");
-        }
-
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getDescripcionProblema() {
-        return descripcionProblema;
-    }
-
-    public String getDiagnostico() {
-        return diagnostico;
-    }
-
     public Estado getEstado() {
         return estado;
-    }
-
-    public LocalDate getFechaIngreso() {
-        return fechaIngreso;
-    }
-
-    public LocalDate getFechaEntrega() {
-        return fechaEntrega;
-    }
-
-    public Double getCosto() {
-        return costo;
     }
 }
