@@ -37,14 +37,7 @@ public class EmpleadoController {
     }
 
     @PostMapping
-    public ResponseEntity<EmpleadoResponse> registrar(@RequestBody Empleado request) {
-        RegistrarEmpleadoCommand command = new RegistrarEmpleadoCommand(
-                request.getNombre(),
-                request.getApellido(),
-                request.getEspecialidad(),
-                request.getEmail()
-        );
-
+    public ResponseEntity<EmpleadoResponse> registrar(@RequestBody RegistrarEmpleadoCommand command) {
         EmpleadoResponse response = registrarEmpleado.saveEmpleado(command);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }

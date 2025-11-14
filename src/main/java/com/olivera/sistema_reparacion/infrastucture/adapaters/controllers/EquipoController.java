@@ -30,14 +30,8 @@ public class EquipoController {
     }
     //post
     @PostMapping
-    public ResponseEntity<EquipoResponse> registrar(@RequestBody Equipo equipo) {
-        RegistrarEquipoCommand command = new RegistrarEquipoCommand(
-                equipo.getTipo(),
-                equipo.getModelo(),
-                equipo.getNumeroSerie(),
-                equipo.getNombreCliente(),
-                equipo.getNumeroCliente()
-        );
+    public ResponseEntity<EquipoResponse> registrar(@RequestBody RegistrarEquipoCommand command) {
+//
         EquipoResponse response = registrarEquipo.registrarEquipo(command);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }

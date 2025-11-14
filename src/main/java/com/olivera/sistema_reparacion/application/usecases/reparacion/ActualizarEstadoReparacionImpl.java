@@ -24,6 +24,7 @@ public class ActualizarEstadoReparacionImpl implements ActualizarEstadoReparacio
         estado.validar();
         Reparacion nueva = reparacionRepositoryPort.findById(id).orElseThrow(()-> new ReparacionNoEncontradaException("Reparacion no encontrada"));
         nueva.setEstado(estado.getEstado());
-        return reparacionMapper.toResponse(nueva);
+        Reparacion guardar = reparacionRepositoryPort.save(nueva);
+        return reparacionMapper.toResponse(guardar );
     }
 }

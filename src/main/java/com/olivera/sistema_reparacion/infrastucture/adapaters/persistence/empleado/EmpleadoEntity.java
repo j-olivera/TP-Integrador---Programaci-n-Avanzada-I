@@ -25,7 +25,7 @@ public class EmpleadoEntity {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @OneToMany(mappedBy = "empleado", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "empleado", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ReparacionEntity> reparaciones = new ArrayList<>();
 
     public EmpleadoEntity() {

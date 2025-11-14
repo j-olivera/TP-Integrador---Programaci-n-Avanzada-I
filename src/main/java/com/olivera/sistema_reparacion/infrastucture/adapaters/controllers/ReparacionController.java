@@ -1,5 +1,6 @@
 package com.olivera.sistema_reparacion.infrastucture.adapaters.controllers;
 
+import com.olivera.sistema_reparacion.application.dto.equipo.RegistrarEquipoCommand;
 import com.olivera.sistema_reparacion.application.dto.reparacion.ActualizarEstadoReparacionCommand;
 import com.olivera.sistema_reparacion.application.dto.reparacion.RegistrarReparacionCommand;
 import com.olivera.sistema_reparacion.application.dto.reparacion.ReparacionResponse;
@@ -36,16 +37,7 @@ public class ReparacionController {
     }
 
     @PostMapping
-    public ResponseEntity<ReparacionResponse> registrarReparacion(@RequestBody Reparacion reparacion) {
-        RegistrarReparacionCommand command = new RegistrarReparacionCommand(
-                reparacion.getDescripcionProblema(),
-                reparacion.getDiagnostico(),
-                reparacion.getEstado(),
-                reparacion.getFechaIngreso(),
-                reparacion.getFechaEntrega(),
-                reparacion.getCosto(),
-                reparacion.getEmpleadoId(),
-                reparacion.getEquipoId());
+    public ResponseEntity<ReparacionResponse> registrarReparacion(@RequestBody RegistrarReparacionCommand command) {
         ReparacionResponse response = registrarReparacion.registrarReparacion(command);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
