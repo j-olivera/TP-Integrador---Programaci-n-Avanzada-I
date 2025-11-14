@@ -73,7 +73,7 @@ public class EmpleadoRepositoryAdapter implements EmpleadoRepositoryPort {
     public List<Reparacion> findReparacionesAsignadasPorId(Long id) {
         return reparacionRepository.findAll().stream()
                 .filter(e-> e.getEmpleado().getId().equals(id))
-                .map(reparacionMapper::toEntity)
+                .map(reparacionMapper::toDomain)
                 .collect(Collectors.toList());
     }
 

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ReparacionJpaMapper {
-    public Reparacion toEntity(ReparacionEntity reparacion) {
+    public Reparacion toDomain(ReparacionEntity reparacion) {
         return Reparacion.reconstituir(
                 reparacion.getId(),
                 reparacion.getDescripcionProblema(),

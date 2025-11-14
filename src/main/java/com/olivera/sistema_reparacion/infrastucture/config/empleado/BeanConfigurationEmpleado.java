@@ -17,6 +17,9 @@ public class BeanConfigurationEmpleado {
         return new EmpleadoMapper();
     }
 
+    @Bean ReparacionMapper reparacionMapper() {
+        return new ReparacionMapper();
+    }
     // Use Cases
     @Bean
     public RegistrarEmpleado registrarEmpleado(EmpleadoRepositoryPort empleadoRepository,

@@ -1,4 +1,6 @@
 package com.olivera.sistema_reparacion.infrastucture.adapaters.persistence.equipo;
 
-public interface EquipoJpaRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface EquipoJpaRepository extends JpaRepository<EquipoEntity, Long> {
 }
