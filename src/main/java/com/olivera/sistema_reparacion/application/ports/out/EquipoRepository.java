@@ -11,10 +11,8 @@ public interface EquipoRepository {
     Equipo save(Equipo equipo);
     Optional<Equipo> findById(Long id);
     Optional<Equipo> findByNumeroSerie(String numeroSerie);
-    List<Equipo> findByNombreCliente(String nombreCliente);
     List<Equipo> findAll();
     void deleteById(Long id);
     boolean existsById(Long id);
-    List<Equipo> findByModelo(ModeloEquipo modelo);
 }
 //uso de optional por si no devuelve nada

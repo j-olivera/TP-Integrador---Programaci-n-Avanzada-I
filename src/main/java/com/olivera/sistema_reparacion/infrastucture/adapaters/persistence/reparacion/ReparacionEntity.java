@@ -31,12 +31,10 @@ import java.time.LocalDate;
         @Column(nullable = false)
         private Double costo;
 
-        // ✅ Relación ManyToOne con Empleado
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "empleado_id", nullable = false)
         private EmpleadoEntity empleado;
 
-        // ✅ Relación ManyToOne con Equipo
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "equipo_id", nullable = false)
         private EquipoEntity equipo;

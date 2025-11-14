@@ -1,18 +1,18 @@
 package com.olivera.sistema_reparacion.application.dto.equipo;
 
 import com.olivera.sistema_reparacion.domain.enums.ModeloEquipo;
-import com.olivera.sistema_reparacion.domain.enums.tipoEquipo;
+import com.olivera.sistema_reparacion.domain.enums.TipoEquipo;
 import com.olivera.sistema_reparacion.domain.exceptions.DatosNoValidosException;
 import com.olivera.sistema_reparacion.domain.exceptions.equipo.NumerosNoValidosExceptions;
 
 public class RegistrarEquipoCommand {
-    private tipoEquipo tipo;
+    private TipoEquipo tipo;
     private ModeloEquipo modelo;
     private String numeroSerie;
     private String nombreCliente;
     private String numeroCliente;
 
-    public RegistrarEquipoCommand(tipoEquipo tipo, ModeloEquipo modelo, String numeroSerie, String nombreCliente, String numeroCliente) {
+    public RegistrarEquipoCommand(TipoEquipo tipo, ModeloEquipo modelo, String numeroSerie, String nombreCliente, String numeroCliente) {
         this.tipo = tipo;
         this.modelo = modelo;
         this.numeroSerie = numeroSerie;
@@ -41,7 +41,7 @@ public class RegistrarEquipoCommand {
 
     }
 
-    public tipoEquipo getTipo() {
+    public TipoEquipo getTipo() {
         return tipo;
     }
 

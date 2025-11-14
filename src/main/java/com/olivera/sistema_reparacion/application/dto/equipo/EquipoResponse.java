@@ -1,17 +1,17 @@
 package com.olivera.sistema_reparacion.application.dto.equipo;
 
 import com.olivera.sistema_reparacion.domain.enums.ModeloEquipo;
-import com.olivera.sistema_reparacion.domain.enums.tipoEquipo;
+import com.olivera.sistema_reparacion.domain.enums.TipoEquipo;
 
 public class EquipoResponse {
     private Long id;
-    private tipoEquipo tipo;
+    private TipoEquipo tipo;
     private ModeloEquipo modelo;
-    private Integer numeroSerie;
+    private String numeroSerie;
     private String nombreCliente;
-    private Integer numeroCliente;
+    private String numeroCliente;
 
-    public EquipoResponse(Long id, tipoEquipo tipo, ModeloEquipo modelo, Integer numeroSerie, String nombreCliente, Integer numeroCliente) {
+    public EquipoResponse(Long id, TipoEquipo tipo, ModeloEquipo modelo, String numeroSerie, String nombreCliente, String numeroCliente) {
         this.id = id;
         this.tipo = tipo;
         this.modelo = modelo;
@@ -24,7 +24,7 @@ public class EquipoResponse {
         return id;
     }
 
-    public tipoEquipo getTipo() {
+    public TipoEquipo getTipo() {
         return tipo;
     }
 
@@ -32,7 +32,7 @@ public class EquipoResponse {
         return modelo;
     }
 
-    public Integer getNumeroSerie() {
+    public String getNumeroSerie() {
         return numeroSerie;
     }
 
@@ -40,7 +40,7 @@ public class EquipoResponse {
         return nombreCliente;
     }
 
-    public Integer getNumeroCliente() {
+    public String getNumeroCliente() {
         return numeroCliente;
     }
 }

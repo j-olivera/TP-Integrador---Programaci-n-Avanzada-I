@@ -1,7 +1,7 @@
 package com.olivera.sistema_reparacion.infrastucture.adapaters.persistence.equipo;
 
 import com.olivera.sistema_reparacion.domain.enums.ModeloEquipo;
-import com.olivera.sistema_reparacion.domain.enums.tipoEquipo;
+import com.olivera.sistema_reparacion.domain.enums.TipoEquipo;
 import com.olivera.sistema_reparacion.infrastucture.adapaters.persistence.reparacion.ReparacionEntity;
 import jakarta.persistence.*;
 
@@ -18,7 +18,7 @@ public class EquipoEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private tipoEquipo tipo;
+    private TipoEquipo tipo;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -36,7 +36,7 @@ public class EquipoEntity {
     @OneToMany(mappedBy = "equipo", fetch = FetchType.LAZY)
     private List<ReparacionEntity> reparaciones = new ArrayList<>();
 
-    public EquipoEntity(Long id, tipoEquipo tipo, ModeloEquipo modelo, String numeroSerie, String nombreCliente, String telefonoCliente, List<ReparacionEntity> reparaciones) {
+    public EquipoEntity(Long id, TipoEquipo tipo, ModeloEquipo modelo, String numeroSerie, String nombreCliente, String telefonoCliente, List<ReparacionEntity> reparaciones) {
         this.id = id;
         this.tipo = tipo;
         this.modelo = modelo;
@@ -51,7 +51,7 @@ public class EquipoEntity {
         return id;
     }
 
-    public tipoEquipo getTipo() {
+    public TipoEquipo getTipo() {
         return tipo;
     }
 
