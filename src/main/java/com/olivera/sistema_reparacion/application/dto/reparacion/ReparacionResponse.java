@@ -12,8 +12,10 @@ public class ReparacionResponse {
     private LocalDate fechaIngreso;
     private LocalDate fechaEntrega;
     private Double costo;
+    private Long empleadoId;
+    private Long equipoId;
 
-    public ReparacionResponse(Long id, String descripcionProblema, String diagnostico, Estado estado, LocalDate fechaIngreso, LocalDate fechaEntrega, Double costo) {
+    public ReparacionResponse(Long id, String descripcionProblema, String diagnostico, Estado estado, LocalDate fechaIngreso, LocalDate fechaEntrega, Double costo, Long empleadoId, Long equipoId) {
         this.id = id;
         this.descripcionProblema = descripcionProblema;
         this.diagnostico = diagnostico;
@@ -21,6 +23,8 @@ public class ReparacionResponse {
         this.fechaIngreso = fechaIngreso;
         this.fechaEntrega = fechaEntrega;
         this.costo = costo;
+        this.empleadoId = empleadoId;
+        this.equipoId = equipoId;
     }
 
     public Long getId() {
@@ -49,5 +53,13 @@ public class ReparacionResponse {
 
     public Double getCosto() {
         return costo;
+    }
+
+    public Long getEmpleadoId() {
+        return empleadoId;
+    }
+
+    public Long getEquipoId() {
+        return equipoId;
     }
 }

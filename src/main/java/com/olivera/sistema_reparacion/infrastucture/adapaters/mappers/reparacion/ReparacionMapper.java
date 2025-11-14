@@ -18,8 +18,8 @@ public class ReparacionMapper {
                 registrarReparacionCommand.getFechaIngreso(),
                 registrarReparacionCommand.getFechaEntrega(),
                 registrarReparacionCommand.getCosto(),
-                null,
-                null);
+                registrarReparacionCommand.getEmpleadoId(),
+                registrarReparacionCommand.getEquipoId());
     }
 
 
@@ -31,7 +31,9 @@ public class ReparacionMapper {
                 reparacion.getEstado(),
                 reparacion.getFechaIngreso(),
                 reparacion.getFechaEntrega(),
-                reparacion.getCosto());
+                reparacion.getCosto(),
+                reparacion.getEmpleadoId(),
+                reparacion.getEquipoId());
     }
 
     public List<ReparacionResponse> toResponseList(List<Reparacion> reparaciones) {

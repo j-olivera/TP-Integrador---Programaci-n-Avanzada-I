@@ -12,14 +12,18 @@ public class RegistrarReparacionCommand {
     private LocalDate fechaIngreso;
     private LocalDate fechaEntrega;
     private Double costo;
+    private Long empleadoId;
+    private Long equipoId;
 
-    public RegistrarReparacionCommand(String descripcionProblema, String diagnostico, Estado estado, LocalDate fechaIngreso, LocalDate fechaEntrega, Double costo) {
+    public RegistrarReparacionCommand(String descripcionProblema, String diagnostico, Estado estado, LocalDate fechaIngreso, LocalDate fechaEntrega, Double costo, Long empleadoId, Long equipoId) {
         this.descripcionProblema = descripcionProblema;
         this.diagnostico = diagnostico;
         this.estado = estado;
         this.fechaIngreso = fechaIngreso;
         this.fechaEntrega = fechaEntrega;
         this.costo = costo;
+        this.empleadoId = empleadoId;
+        this.equipoId = equipoId;
     }
 
     public void validar(){
@@ -64,5 +68,13 @@ public class RegistrarReparacionCommand {
 
     public Double getCosto() {
         return costo;
+    }
+
+    public Long getEmpleadoId() {
+        return empleadoId;
+    }
+
+    public Long getEquipoId() {
+        return equipoId;
     }
 }
