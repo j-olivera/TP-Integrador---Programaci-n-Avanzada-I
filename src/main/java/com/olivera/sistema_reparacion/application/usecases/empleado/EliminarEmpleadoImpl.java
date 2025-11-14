@@ -1,12 +1,12 @@
 package com.olivera.sistema_reparacion.application.usecases.empleado;
 
 import com.olivera.sistema_reparacion.application.ports.in.empleado.EliminarEmpleado;
-import com.olivera.sistema_reparacion.application.ports.out.EmpleadoRepository;
+import com.olivera.sistema_reparacion.application.ports.out.EmpleadoRepositoryPort;
 
 public class EliminarEmpleadoImpl implements EliminarEmpleado {
-    private final EmpleadoRepository empleadoRepository;
+    private final EmpleadoRepositoryPort empleadoRepository;
 
-    public EliminarEmpleadoImpl(EmpleadoRepository empleadoRepository) {
+    public EliminarEmpleadoImpl(EmpleadoRepositoryPort empleadoRepository) {
         this.empleadoRepository = empleadoRepository;
     }
 

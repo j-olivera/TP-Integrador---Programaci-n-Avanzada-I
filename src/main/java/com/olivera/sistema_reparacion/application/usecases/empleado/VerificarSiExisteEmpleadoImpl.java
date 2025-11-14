@@ -1,12 +1,12 @@
 package com.olivera.sistema_reparacion.application.usecases.empleado;
 
 import com.olivera.sistema_reparacion.application.ports.in.empleado.VerificarSiExisteEmpleadoPorId;
-import com.olivera.sistema_reparacion.application.ports.out.EmpleadoRepository;
+import com.olivera.sistema_reparacion.application.ports.out.EmpleadoRepositoryPort;
 
 public class VerificarSiExisteEmpleadoImpl implements VerificarSiExisteEmpleadoPorId {
-    private final EmpleadoRepository empleadoRepository;
+    private final EmpleadoRepositoryPort empleadoRepository;
 
-    public VerificarSiExisteEmpleadoImpl(EmpleadoRepository empleadoRepository) {
+    public VerificarSiExisteEmpleadoImpl(EmpleadoRepositoryPort empleadoRepository) {
         this.empleadoRepository = empleadoRepository;
     }
 
