@@ -17,8 +17,7 @@ public class EmpleadoRepositoryAdapter implements EmpleadoRepositoryPort {
     private final EmpleadoJpaRepository jpaRepository;
     private final EmpleadoJpaMapper mapper;
 
-    public EmpleadoRepositoryAdapter(ReparacionJpaRepository reparacionRepository, ReparacionJpaMapper reparacionMapper, EmpleadoJpaRepository jpaRepository,
-                                     EmpleadoJpaMapper mapper) {
+    public EmpleadoRepositoryAdapter(ReparacionJpaRepository reparacionRepository, ReparacionJpaMapper reparacionMapper, EmpleadoJpaRepository jpaRepository, EmpleadoJpaMapper mapper) {
         this.reparacionRepository = reparacionRepository;
         this.reparacionMapper = reparacionMapper;
         this.jpaRepository = jpaRepository;

@@ -26,7 +26,7 @@ import java.time.LocalDate;
 
         @Column(nullable = false)
         private LocalDate fechaIngreso;
-        @Column(nullable = false)
+        @Column()
         private LocalDate fechaEntrega;
         @Column(nullable = false)
         private Double costo;

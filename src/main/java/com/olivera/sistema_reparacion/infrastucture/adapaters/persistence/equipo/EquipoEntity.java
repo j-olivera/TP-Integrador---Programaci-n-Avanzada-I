@@ -31,19 +31,18 @@ public class EquipoEntity {
     private String nombreCliente;
 
     @Column(nullable = false)
-    private String telefonoCliente;
+    private String numeroCliente;
 
     @OneToMany(mappedBy = "equipo", fetch = FetchType.LAZY)
     private List<ReparacionEntity> reparaciones = new ArrayList<>();
 
-    public EquipoEntity(Long id, TipoEquipo tipo, ModeloEquipo modelo, String numeroSerie, String nombreCliente, String telefonoCliente, List<ReparacionEntity> reparaciones) {
+    public EquipoEntity(Long id, TipoEquipo tipo, ModeloEquipo modelo, String numeroSerie, String nombreCliente, String numeroCliente) {
         this.id = id;
         this.tipo = tipo;
         this.modelo = modelo;
         this.numeroSerie = numeroSerie;
         this.nombreCliente = nombreCliente;
-        this.telefonoCliente = telefonoCliente;
-        this.reparaciones = reparaciones;
+        this.numeroCliente = numeroCliente;
     }
     public EquipoEntity() {}
 
@@ -67,8 +66,8 @@ public class EquipoEntity {
         return nombreCliente;
     }
 
-    public String getTelefonoCliente() {
-        return telefonoCliente;
+    public String getNumeroCliente() {
+        return numeroCliente;
     }
 
     public List<ReparacionEntity> getReparaciones() {
