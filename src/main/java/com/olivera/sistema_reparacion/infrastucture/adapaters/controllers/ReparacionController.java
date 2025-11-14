@@ -68,4 +68,10 @@ public class ReparacionController {
         ReparacionResponse actEstado = actualizarEstadoReparacion.actualizarEstado(id, command);
         return ResponseEntity.ok(actEstado);
     }
+    //delete
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> eliminarReparacionPorId(@PathVariable Long id) {
+        eliminarReparacionPorId.eliminarReparacionPorId(id);
+        return ResponseEntity.ok("Reparacion eliminada");
+    }
 }

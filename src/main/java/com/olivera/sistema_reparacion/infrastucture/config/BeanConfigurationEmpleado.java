@@ -1,4 +1,4 @@
-package com.olivera.sistema_reparacion.infrastucture.config.empleado;
+package com.olivera.sistema_reparacion.infrastucture.config;
 
 import com.olivera.sistema_reparacion.application.ports.in.empleado.*;
 import com.olivera.sistema_reparacion.application.ports.in.equipo.*;
@@ -12,7 +12,6 @@ import com.olivera.sistema_reparacion.application.usecases.reparacion.*;
 import com.olivera.sistema_reparacion.infrastucture.adapaters.mappers.empleado.EmpleadoMapper;
 import com.olivera.sistema_reparacion.infrastucture.adapaters.mappers.equipo.EquipoMapper;
 import com.olivera.sistema_reparacion.infrastucture.adapaters.mappers.reparacion.ReparacionMapper;
-import com.olivera.sistema_reparacion.infrastucture.adapaters.persistence.equipo.EquipoJpaMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
