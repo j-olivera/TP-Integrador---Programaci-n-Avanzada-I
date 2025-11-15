@@ -31,7 +31,7 @@ public class Empleado {
     }
 
     private static void validarDatos(String nombre, String apellido, String especialidad, String email) {
-        if(nombre == null || apellido == null || especialidad == null || email == null)
+        if(nombre == null || apellido == null || especialidad == null || email == null || nombre.isBlank() || apellido.isBlank() || email.isBlank() || especialidad.isBlank())
             throw new DatosNoValidosException("Datos no validos");
     }
 

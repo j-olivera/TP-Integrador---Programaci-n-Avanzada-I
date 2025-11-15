@@ -33,7 +33,8 @@ public class Equipo {
     }
 
     private static void validarDatos(TipoEquipo tipo, ModeloEquipo modelo, String numeroSerie, String nombreCliente, String numeroCliente) {
-        if(tipo==null || modelo==null || numeroSerie==null || nombreCliente==null || numeroCliente==null || nombreCliente.isBlank()){
+        if(tipo==null || modelo==null || numeroSerie==null || nombreCliente==null || numeroCliente==null ||
+                nombreCliente.isBlank() || numeroSerie.isBlank() || numeroCliente.isBlank()){
             throw new DatosNoValidosException("Datos no validos.");
         }
     }
