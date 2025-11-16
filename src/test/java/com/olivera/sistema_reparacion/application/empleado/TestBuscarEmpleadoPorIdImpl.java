@@ -5,6 +5,7 @@ import com.olivera.sistema_reparacion.application.ports.in.empleado.BuscarEmplea
 import com.olivera.sistema_reparacion.application.ports.out.EmpleadoRepositoryPort;
 import com.olivera.sistema_reparacion.application.usecases.empleado.BuscarEmpleadoPorIdImpl;
 import com.olivera.sistema_reparacion.domain.entities.Empleado;
+import com.olivera.sistema_reparacion.domain.exceptions.empleado.EmpleadoNoEncontradoException;
 import com.olivera.sistema_reparacion.infrastucture.adapaters.mappers.empleado.EmpleadoMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -16,8 +17,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class TestBuscarEmpleadoPorIdImpl {
@@ -42,4 +42,15 @@ public class TestBuscarEmpleadoPorIdImpl {
         verify(empleadoMapper).toResponse(any(Empleado.class));
     }
 
+    @Test
+    void testBuscarEmpleadoPorIdNoExito(){
+        Long idEmpleado = 10L;
+        when(empleadoRepositoryPort.findById(idEmpleado)).thenReturn(Optional.empty());
+        //salta la excep
+        Assertions.assertThrows(EmpleadoNoEncontradoException.class,()->buscarEmpleadoPorId.buscarEmpleadoPorId(idEmpleado));
+        //
+        verify(empleadoRepositoryPort).findById(idEmpleado); //se uso
+        verify(empleadoMapper,never()).toResponse(any(Empleado.class));//no mapeo
+
+    }
 }
