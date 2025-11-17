@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class BeanConfigurationEmpleado {
+public class BeanConfiguration {
     //Mapper
     @Bean
     public EmpleadoMapper empleadoMapper() {
