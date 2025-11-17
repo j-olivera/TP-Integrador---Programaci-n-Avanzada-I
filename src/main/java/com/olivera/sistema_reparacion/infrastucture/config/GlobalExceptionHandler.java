@@ -4,6 +4,10 @@ package com.olivera.sistema_reparacion.infrastucture.config;
 import com.olivera.sistema_reparacion.domain.exceptions.DatosNoValidosException;
 import com.olivera.sistema_reparacion.domain.exceptions.empleado.EmailYaRegistradoException;
 import com.olivera.sistema_reparacion.domain.exceptions.empleado.EmpleadoNoEncontradoException;
+import com.olivera.sistema_reparacion.domain.exceptions.equipo.EquipoNoEncontradoException;
+import com.olivera.sistema_reparacion.domain.exceptions.equipo.EquipoYaExisteException;
+import com.olivera.sistema_reparacion.domain.exceptions.reparacion.ReparacionNoEncontradaException;
+import com.olivera.sistema_reparacion.domain.exceptions.reparacion.ReparacionYaExisteException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -37,7 +41,46 @@ public class GlobalExceptionHandler {
     }
 
     //EQUIPO
+    @ExceptionHandler(EquipoNoEncontradoException.class)
+    public ResponseEntity<ErrorResponse> handleEquipoNoEncontrado(EquipoNoEncontradoException ex) {
+        ErrorResponse error = new ErrorResponse(
+                HttpStatus.NOT_FOUND.value(),
+                ex.getMessage(),
+                LocalDateTime.now()
+        );
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+    }
+
+    @ExceptionHandler(EquipoYaExisteException.class)
+    public ResponseEntity<ErrorResponse> handleEquipoYaExiste(EquipoYaExisteException ex) {
+        ErrorResponse error = new ErrorResponse(
+                HttpStatus.CONFLICT.value(),
+                ex.getMessage(),
+                LocalDateTime.now()
+        );
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
+    }
     // REPARACION
+    @ExceptionHandler(ReparacionNoEncontradaException.class)
+    public ResponseEntity<ErrorResponse> handleReparacionNoEncontrado(ReparacionNoEncontradaException ex) {
+        ErrorResponse error = new ErrorResponse(
+                HttpStatus.NOT_FOUND.value(),
+                ex.getMessage(),
+                LocalDateTime.now()
+        );
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+    }
+
+    @ExceptionHandler(ReparacionYaExisteException.class)
+    public ResponseEntity<ErrorResponse> handleReparacionYaExiste(ReparacionYaExisteException ex) {
+        ErrorResponse error = new ErrorResponse(
+                HttpStatus.CONFLICT.value(),
+                ex.getMessage(),
+                LocalDateTime.now()
+        );
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
+    }
+    //GLOBALES
     @ExceptionHandler(DatosNoValidosException.class)
     public ResponseEntity<ErrorResponse> handleDatosNoValidos(DatosNoValidosException ex) {
         ErrorResponse error = new ErrorResponse(
