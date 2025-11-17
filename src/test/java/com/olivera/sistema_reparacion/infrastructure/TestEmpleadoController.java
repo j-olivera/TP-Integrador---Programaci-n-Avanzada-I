@@ -100,9 +100,9 @@ public class TestEmpleadoController {
                 "nombre": "Juan",
                 "apellido": "Olivera",
                 "especialidad": "Programador",
-                "email": "juancom"
+                "email": "juancom" 
             }
-        """;
+        """; //el email sería invalido
         when(registrarEmpleado.saveEmpleado(any())).thenThrow(new DatosNoValidosException("Datos no validos"));
         mockMvc.perform(post("/api/empleados")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -131,14 +131,6 @@ public class TestEmpleadoController {
     }
     @Test
     void testDeberiaEncontrarAlEmpleadoPorIdYDevolver200() throws Exception {
-        String requestBody = """
-            {
-                "nombre": "Juan",
-                "apellido": "Olivera",
-                "especialidad": "Programador",
-                "email": "juancom"
-            }
-        """;
         EmpleadoResponse response= new  EmpleadoResponse(1L, "Juan", "Olivera", "Programador", "juan@gmail.com");
         when(buscarEmpleadoPorId.buscarEmpleadoPorId(1L)).thenReturn(response);
 
