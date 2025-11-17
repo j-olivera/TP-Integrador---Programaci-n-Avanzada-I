@@ -6,6 +6,7 @@ import com.olivera.sistema_reparacion.domain.exceptions.empleado.EmailYaRegistra
 import com.olivera.sistema_reparacion.domain.exceptions.empleado.EmpleadoNoEncontradoException;
 import com.olivera.sistema_reparacion.domain.exceptions.equipo.EquipoNoEncontradoException;
 import com.olivera.sistema_reparacion.domain.exceptions.equipo.EquipoYaExisteException;
+import com.olivera.sistema_reparacion.domain.exceptions.equipo.NumerosNoValidosExceptions;
 import com.olivera.sistema_reparacion.domain.exceptions.reparacion.ReparacionNoEncontradaException;
 import com.olivera.sistema_reparacion.domain.exceptions.reparacion.ReparacionYaExisteException;
 import org.springframework.http.HttpStatus;
@@ -59,6 +60,15 @@ public class GlobalExceptionHandler {
                 LocalDateTime.now()
         );
         return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
+    }
+    @ExceptionHandler(NumerosNoValidosExceptions.class)
+    public ResponseEntity<ErrorResponse> hndleNumerosParaEquipoInvalidos(NumerosNoValidosExceptions ex){
+        ErrorResponse error = new ErrorResponse(
+                HttpStatus.BAD_REQUEST.value(),
+                ex.getMessage(),
+                LocalDateTime.now()
+        );
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
     // REPARACION
     @ExceptionHandler(ReparacionNoEncontradaException.class)
