@@ -94,7 +94,7 @@ public class TestEmpleadoController {
         verify(registrarEmpleado, times(1)).saveEmpleado(any());
     }
     @Test
-    void testNoDebeRegistrarPorDatosInvalido() throws Exception {
+    void testNoDebeRegistrarEmpleadoPorDatosInvalido() throws Exception {
         String requestBody = """
             {
                 "nombre": "Juan",
@@ -137,6 +137,7 @@ public class TestEmpleadoController {
 
         mockMvc.perform(get("/api/empleados/{id}", 1L))
                 .andExpect(status().isOk());
+        verify(buscarEmpleadoPorId, times(1)).buscarEmpleadoPorId(1L);
     }
     //delete
     @Test
