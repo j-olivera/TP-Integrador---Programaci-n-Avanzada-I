@@ -32,7 +32,7 @@ public class Reparacion {
 
     public static Reparacion crearReparacion(String descripcionProblema, String diagnostico, Estado estado, LocalDate fechaIngreso, LocalDate fechaEntrega, Double costo,  Long empleadoId, Long equipoId) {
         validarDatos(descripcionProblema,diagnostico,estado,fechaIngreso,fechaEntrega,costo);
-        validarFechaIngreso(fechaIngreso);
+        //validarFechaIngreso(fechaIngreso); falla en logica de negocio
         validarDescripcion_Diagnostico(descripcionProblema,diagnostico);
         return new Reparacion(null,descripcionProblema,diagnostico, estado, fechaIngreso, null, costo,empleadoId,equipoId);
     }
