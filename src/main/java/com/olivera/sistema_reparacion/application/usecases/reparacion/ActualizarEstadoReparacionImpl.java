@@ -21,10 +21,10 @@ public class ActualizarEstadoReparacionImpl implements ActualizarEstadoReparacio
 
     @Override
     public ReparacionResponse actualizarEstado(Long id, ActualizarEstadoReparacionCommand estado) {
-        estado.validar();
-        Reparacion nueva = reparacionRepositoryPort.findById(id).orElseThrow(()-> new ReparacionNoEncontradaException("Reparacion no encontrada"));
+        estado.validar(); //aca se valida
+        Reparacion nueva = reparacionRepositoryPort.findById(id).orElseThrow(()-> new ReparacionNoEncontradaException("Reparacion no encontrada")); //aca se busca
         nueva.setEstado(estado.getEstado());
-        Reparacion guardar = reparacionRepositoryPort.save(nueva);
+        Reparacion guardar = reparacionRepositoryPort.save(nueva); //y aqui guardamos
         return reparacionMapper.toResponse(guardar );
     }
 }
