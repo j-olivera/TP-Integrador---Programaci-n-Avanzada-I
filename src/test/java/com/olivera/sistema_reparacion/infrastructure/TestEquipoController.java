@@ -7,6 +7,8 @@ import com.olivera.sistema_reparacion.application.ports.in.equipo.*;
 import com.olivera.sistema_reparacion.domain.enums.ModeloEquipo;
 import com.olivera.sistema_reparacion.domain.enums.TipoEquipo;
 import com.olivera.sistema_reparacion.domain.exceptions.DatosNoValidosException;
+import com.olivera.sistema_reparacion.domain.exceptions.empleado.EmpleadoNoEncontradoException;
+import com.olivera.sistema_reparacion.domain.exceptions.equipo.EquipoNoEncontradoException;
 import com.olivera.sistema_reparacion.domain.exceptions.equipo.NumerosNoValidosExceptions;
 import com.olivera.sistema_reparacion.infrastucture.adapaters.controllers.EquipoController;
 import org.junit.jupiter.api.Test;
@@ -137,5 +139,14 @@ public class TestEquipoController {
         mockMvc.perform(delete("/api/equipos/delete/{id}", idEquipo))
                 .andExpect(status().isOk());
         verify(eliminarEquipoPorId,times(1)).eliminarEquipo(idEquipo);
+    }
+    //test not found
+    @Test
+    void testDeberiaDevolverStatus404() throws Exception {
+        when(buscarEquipoPorId.buscarEquipoPorId(1L)).thenThrow(new EquipoNoEncontradoException("Equipo no encontrado"));
+
+        mockMvc.perform(get("/api/equipos/{id}", 1L))
+                .andExpect(status().isNotFound());
+        verify(buscarEquipoPorId, times(1)).buscarEquipoPorId(1L);
     }
 }

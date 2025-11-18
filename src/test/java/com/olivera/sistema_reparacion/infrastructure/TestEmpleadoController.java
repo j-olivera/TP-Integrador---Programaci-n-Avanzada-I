@@ -181,6 +181,15 @@ public class TestEmpleadoController {
 
         verify(actualizarInformacionEmpleado, times(1)).actualizarEmpleado(any());
     }
+    //test not found
+    @Test
+    void testDeberiaDevolverStatus404() throws Exception {
+        when(buscarEmpleadoPorId.buscarEmpleadoPorId(1L)).thenThrow(new EmpleadoNoEncontradoException("Empleado no encontrado"));
+
+        mockMvc.perform(get("/api/empleados/{id}", 1L))
+                .andExpect(status().isNotFound());
+        verify(buscarEmpleadoPorId, times(1)).buscarEmpleadoPorId(1L);
+    }
 }
 //nota CONECTAR INICIAR SPRING BOOT O EXPLOTA EL TEST
 //NOTA 2: PONER BIEN LAS EXCEPCIONES

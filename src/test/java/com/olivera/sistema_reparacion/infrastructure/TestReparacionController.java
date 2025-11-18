@@ -7,6 +7,8 @@ import com.olivera.sistema_reparacion.application.dto.reparacion.ReparacionRespo
 import com.olivera.sistema_reparacion.application.ports.in.reparacion.*;
 import com.olivera.sistema_reparacion.domain.enums.Estado;
 import com.olivera.sistema_reparacion.domain.exceptions.DatosNoValidosException;
+import com.olivera.sistema_reparacion.domain.exceptions.empleado.EmpleadoNoEncontradoException;
+import com.olivera.sistema_reparacion.domain.exceptions.reparacion.ReparacionNoEncontradaException;
 import com.olivera.sistema_reparacion.infrastucture.adapaters.controllers.ReparacionController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -220,5 +222,14 @@ public class TestReparacionController {
                 .andExpect(content().string("Reparacion eliminada"));
 
         verify(eliminarReparacionPorId, times(1)).eliminarReparacionPorId(id);
+    }
+    //test not found
+    @Test
+    void testDeberiaDevolverStatus404() throws Exception {
+        when(buscarReparacionPorId.buscarReparacionPorId(1L)).thenThrow(new ReparacionNoEncontradaException("Reparacion no encontrado"));
+
+        mockMvc.perform(get("/api/reparaciones/{id}", 1L))
+                .andExpect(status().isNotFound());
+        verify(buscarReparacionPorId, times(1)).buscarReparacionPorId(1L);
     }
 }
