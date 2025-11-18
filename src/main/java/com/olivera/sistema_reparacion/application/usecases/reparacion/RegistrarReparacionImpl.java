@@ -10,9 +10,6 @@ import com.olivera.sistema_reparacion.domain.entities.Reparacion;
 import com.olivera.sistema_reparacion.domain.exceptions.empleado.EmpleadoNoEncontradoException;
 import com.olivera.sistema_reparacion.domain.exceptions.equipo.EquipoNoEncontradoException;
 import com.olivera.sistema_reparacion.infrastucture.adapaters.mappers.reparacion.ReparacionMapper;
-import com.olivera.sistema_reparacion.infrastucture.adapaters.persistence.empleado.EmpleadoEntity;
-import com.olivera.sistema_reparacion.infrastucture.adapaters.persistence.equipo.EquipoEntity;
-import com.olivera.sistema_reparacion.infrastucture.adapaters.persistence.equipo.EquipoRepositoryAdapter;
 
 public class RegistrarReparacionImpl implements RegistrarReparacion {
    private final ReparacionRepositoryPort reparacionRepositoryPort;
