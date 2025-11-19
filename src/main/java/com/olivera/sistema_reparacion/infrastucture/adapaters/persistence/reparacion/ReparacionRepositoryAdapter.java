@@ -1,6 +1,7 @@
 package com.olivera.sistema_reparacion.infrastucture.adapaters.persistence.reparacion;
 
 import com.olivera.sistema_reparacion.application.ports.out.ReparacionRepositoryPort;
+import com.olivera.sistema_reparacion.domain.entities.Empleado;
 import com.olivera.sistema_reparacion.domain.entities.Reparacion;
 import com.olivera.sistema_reparacion.domain.enums.Estado;
 import com.olivera.sistema_reparacion.domain.exceptions.empleado.EmpleadoNoEncontradoException;
@@ -33,12 +34,8 @@ public class ReparacionRepositoryAdapter implements ReparacionRepositoryPort {
     @Override
     public Reparacion save(Reparacion reparacion) {
         //ver si tiene empleado y equipo asignado ?¡?¡?¡?
-        EmpleadoEntity empleado = empleadoJpaRepository.findById(reparacion.getEmpleadoId())
-                .orElseThrow(() -> new EmpleadoNoEncontradoException("Empleado no encontrado"));
-        EquipoEntity equipo = equipoJpaRepository.findById(reparacion.getEquipoId())
-                .orElseThrow(()-> new EquipoNoEncontradoException("Equipo no encontrado"));
-
-
+        EmpleadoEntity empleado = empleadoJpaRepository.findById(reparacion.getEmpleadoId()).orElse(null);
+        EquipoEntity equipo =  equipoJpaRepository.findById(reparacion.getEquipoId()).orElse(null);
         ReparacionEntity entity = reparacionJpaMapper.toEntity(reparacion, empleado, equipo);
         ReparacionEntity entitySaved = reparacionJpaRepository.save(entity);
 
@@ -93,12 +90,5 @@ public class ReparacionRepositoryAdapter implements ReparacionRepositoryPort {
         reparacionJpaRepository.deleteById(id);
     }
 
-    @Override
-    public Reparacion actualizarEstado(Long id, Estado estado) {
-        ReparacionEntity nv = reparacionJpaRepository.findById(id).
-                orElseThrow(()-> new RuntimeException("Reparacion no econtrada"));
-        nv.setEstado(estado);
-        return reparacionJpaMapper.toDomain(nv);
-    }
 }
 //.map(mapper::toDomain) PARA TODO

@@ -1,11 +1,19 @@
 package com.olivera.sistema_reparacion.application.reparacion;
 
+import com.olivera.sistema_reparacion.application.dto.empleado.RegistrarEmpleadoCommand;
+import com.olivera.sistema_reparacion.application.dto.equipo.RegistrarEquipoCommand;
 import com.olivera.sistema_reparacion.application.dto.reparacion.RegistrarReparacionCommand;
 import com.olivera.sistema_reparacion.application.dto.reparacion.ReparacionResponse;
+import com.olivera.sistema_reparacion.application.ports.out.EmpleadoRepositoryPort;
+import com.olivera.sistema_reparacion.application.ports.out.EquipoRepositoryPort;
 import com.olivera.sistema_reparacion.application.ports.out.ReparacionRepositoryPort;
 import com.olivera.sistema_reparacion.application.usecases.reparacion.RegistrarReparacionImpl;
+import com.olivera.sistema_reparacion.domain.entities.Empleado;
+import com.olivera.sistema_reparacion.domain.entities.Equipo;
 import com.olivera.sistema_reparacion.domain.entities.Reparacion;
 import com.olivera.sistema_reparacion.domain.enums.Estado;
+import com.olivera.sistema_reparacion.domain.enums.ModeloEquipo;
+import com.olivera.sistema_reparacion.domain.enums.TipoEquipo;
 import com.olivera.sistema_reparacion.domain.exceptions.DatosNoValidosException;
 import com.olivera.sistema_reparacion.infrastucture.adapaters.mappers.reparacion.ReparacionMapper;
 import org.junit.jupiter.api.Assertions;
@@ -16,6 +24,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -26,6 +35,10 @@ public class TestRegistrarReparacionImpl {
      ReparacionRepositoryPort reparacionRepositoryPort;
     @Mock
      ReparacionMapper reparacionMapper;
+    @Mock
+    EmpleadoRepositoryPort  empleadoRepositoryPort;
+    @Mock
+    EquipoRepositoryPort equipoRepositoryPort;
     @InjectMocks
      RegistrarReparacionImpl registrarReparacionImpl;
 
@@ -37,14 +50,18 @@ public class TestRegistrarReparacionImpl {
         LocalDate fechaInicio = LocalDate.now();
         LocalDate fechaFin = null;
         Double costo = 312.11;
-        Long idEmpleado = 21L;
-        Long idEquipo = 12L;
+        Long idEmpleado = 1L;
+        Long idEquipo = 1L;
+        Empleado reconstruido = Empleado.reconstruir(idEmpleado,"Juan", "Olivera", "Programador", "Juan@gmail.com");
+        Equipo encontrad = Equipo.reconstituir(idEquipo, TipoEquipo.ALL_IN, ModeloEquipo.ASUS, "ASF212-12", "Juan Olivera", "111111111111111");
         RegistrarReparacionCommand command = new RegistrarReparacionCommand(descripcionProblema,diagnostico,estado,fechaInicio,fechaFin,costo,idEmpleado,idEquipo);
         Reparacion reparacion = Reparacion.reconstituir(1L,descripcionProblema,diagnostico,estado,fechaInicio,fechaFin,costo,idEmpleado,idEquipo);
         ReparacionResponse reparacionResponse = new ReparacionResponse(1L,descripcionProblema,diagnostico,estado,fechaInicio,fechaFin,costo,idEmpleado,idEquipo);
         when(reparacionRepositoryPort.save(any(Reparacion.class))).thenReturn(reparacion);
         when(reparacionMapper.toResponse(any(Reparacion.class))).thenReturn(reparacionResponse);
         when(reparacionMapper.toDomain(any(RegistrarReparacionCommand.class))).thenReturn(reparacion);
+        when(empleadoRepositoryPort.findById(idEmpleado)).thenReturn(Optional.of(reconstruido));
+        when(equipoRepositoryPort.findById(idEquipo)).thenReturn(Optional.of(encontrad));
         //
         ReparacionResponse response = registrarReparacionImpl.registrarReparacion(command);
         //
@@ -53,6 +70,8 @@ public class TestRegistrarReparacionImpl {
         verify(reparacionRepositoryPort).save(any(Reparacion.class));
         verify(reparacionMapper).toDomain(any(RegistrarReparacionCommand.class));
         verify(reparacionMapper).toResponse(any(Reparacion.class));
+        verify(empleadoRepositoryPort).findById(idEmpleado);
+        verify(equipoRepositoryPort).findById(idEquipo);
     }
     @Test
     void testRegistrarReparacionNoExito() {

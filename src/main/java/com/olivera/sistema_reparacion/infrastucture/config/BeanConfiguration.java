@@ -66,8 +66,8 @@ public class BeanConfiguration {
 
     //REPARACION USE CASE
     @Bean
-    public RegistrarReparacion registrarReparacionPorId(ReparacionRepositoryPort reparacionRepositoryPort, ReparacionMapper reparacionMapper) {
-        return new RegistrarReparacionImpl(reparacionRepositoryPort, reparacionMapper);
+    public RegistrarReparacion registrarReparacionPorId(ReparacionRepositoryPort reparacionRepositoryPort, ReparacionMapper reparacionMapper,EquipoRepositoryPort  equipoRepositoryPort, EmpleadoRepositoryPort empleadoRepositoryPort) {
+        return new RegistrarReparacionImpl(reparacionRepositoryPort, empleadoRepositoryPort, equipoRepositoryPort, reparacionMapper);
     }
     @Bean
     public BuscarReparacionPorId buscarReparacionPorId(ReparacionRepositoryPort reparacionRepositoryPort, ReparacionMapper reparacionMapper) {
